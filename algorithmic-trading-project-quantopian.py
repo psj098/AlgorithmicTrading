@@ -1,5 +1,5 @@
 """
-Quantopian Algorithmic Trading project
+University of Melbourne Algorithmic Trading (FNCE30010) Quantopian project
 """
 
 import quantopian.algorithm as algo
@@ -23,7 +23,7 @@ ETF_SECTOR_TICKER = {101: symbol('XLB'), 102: symbol('XLY'),
 
 def initialize(context):
     """
-    Called once at the start of the algorithm.
+    Called once at the start of the algorithm
     """
     # Rebalance every 3 months, 1 hour after market open.
     algo.schedule_function(
@@ -39,7 +39,7 @@ def initialize(context):
         algo.time_rules.market_close(),
     )
 
-    # Create our dynamic stock selector.
+    # Create dynamic stock selector.
     algo.attach_pipeline(make_pipeline(), 'pipeline')
 
     # Include slippage of large positions, ignored for smaller positions
@@ -51,7 +51,7 @@ def initialize(context):
 
 def make_pipeline():
     """
-    A function to create our dynamic stock selector (pipeline). 
+    A function to create dynamic stock selector (pipeline)
     Documentation on pipeline can be found here:
     https://www.quantopian.com/help#pipeline-title
     """
@@ -92,12 +92,12 @@ def before_trading_start(context, data):
     """
     context.output = algo.pipeline_output('pipeline')
 
-    # These are the securities that we are interested in trading each day.
+    # Securities we are interested in trading each day
     context.security_list = context.output.index
 
 def rebalance(context, data):
     """
-    Execute orders according to our schedule_function() timing.
+    Execute orders according to our schedule_function() timing
     """
 
     # To close out ETF positions if the shorted stock gets delisted
@@ -128,7 +128,7 @@ def rebalance(context, data):
                  closing offsetting ETF {} for {} ETFs @ ${}"
                  .format(security, ETF_ticker.symbol, ETF_amount, ETF_price)) 
 
-    # Early return if current month is not in QUARTER_STARTS
+    # Early return if current month is not in MONTH_STARTS
     month_number = get_datetime().date().month
     if month_number not in MONTH_STARTS:
         return None
