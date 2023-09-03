@@ -1,6 +1,8 @@
 # Quantopian Algorithmic Trading Project
 This is a Python script to execute an algorithmic trading strategy using Quantopian's platform. The script is designed to short recent IPOs and hedge by going long in the corresponding sector ETF. The positions are held for 4 years after the IPO, and the performance of each pair trade is recorded.
 
+DISCLAIMER: Quantopian platform has been closed for live trading as of September 2020. 
+
 ## Key Concepts
 - Quantopian: Quantopian is a free, online platform that provides the data, the backtester, and the analysis tools for individuals to develop algorithmic trading strategies.
 
@@ -32,5 +34,3 @@ This is a Python script to execute an algorithmic trading strategy using Quantop
 
 - handle_data(context, data): Called every minute, but currently does nothing.
 
-## Disclaimer
-The Quantopian platform has been closed for live trading as of September 2020. 
